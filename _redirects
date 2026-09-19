@@ -1,7 +1,17 @@
-# Gemini API 反向代理
-/gemini/*     https://generativelanguage.googleapis.com/:splat  200!
+# 1. Gemini API 反向代理
+/gemini/*         https://generativelanguage.googleapis.com/:splat  200!
 
-# Groq API 反向代理
-/groq/v1/*    https://api.groq.com/openai/v1/:splat  200!
-/openai/v1/*  https://api.groq.com/openai/v1/:splat  200!
-/v1/*         https://api.groq.com/openai/v1/:splat  200!
+# 2. Groq API 反向代理
+/groq/v1/*        https://api.groq.com/openai/v1/:splat             200!
+
+# 3. Cerebras API 反向代理（带 OpenAI 兼容支持）
+/cerebras/v1/*    https://api.cerebras.ai/v1/:splat                 200!
+/cerebras/*       https://api.cerebras.ai/v1/:splat                 200!
+
+# 4. Cohere API 反向代理（带 OpenAI 兼容支持）
+/cohere/v1/*      https://api.cohere.ai/compatibility/v1/:splat     200!
+/cohere/*         https://api.cohere.ai/compatibility/v1/:splat     200!
+
+# 默认兜底兼容 (指向 Groq)
+/openai/v1/*      https://api.groq.com/openai/v1/:splat             200!
+/v1/*             https://api.groq.com/openai/v1/:splat             200!
