@@ -1,3 +1,7 @@
+# Gemini API 反向代理
+/gemini/*     https://generativelanguage.googleapis.com/:splat  200!
+
+# Groq API 反向代理
+/groq/v1/*    https://api.groq.com/openai/v1/:splat  200!
 /openai/v1/*  https://api.groq.com/openai/v1/:splat  200!
 /v1/*         https://api.groq.com/openai/v1/:splat  200!
-/*            https://api.groq.com/openai/v1/:splat  200!
