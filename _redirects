@@ -7,8 +7,9 @@
 # 3. Cerebras API 反向代理
 /cerebras/v1/*    https://api.cerebras.ai/v1/:splat                 200!
 
-# 4. Cohere API 反向代理（已修正域名与路径）
-/cohere/v1/*      https://api.cohere.com/v2/:splat                  200!
+# 4. Cohere API 兼容通道（同时兼容 /cohere 和 /cohere/v1）
+/cohere/v1/*      https://api.cohere.ai/compatibility/v1/:splat     200!
+/cohere/*         https://api.cohere.ai/compatibility/v1/:splat     200!
 
 # 默认兜底兼容 (指向 Groq)
 /openai/v1/*      https://api.groq.com/openai/v1/:splat             200!
