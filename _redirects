@@ -1,0 +1,3 @@
+/openai/v1/*  https://api.groq.com/openai/v1/:splat  200!
+/v1/*         https://api.groq.com/openai/v1/:splat  200!
+/*            https://api.groq.com/openai/v1/:splat  200!
