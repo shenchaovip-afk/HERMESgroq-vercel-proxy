@@ -1,20 +1,35 @@
-# 1. Gemini API 反向代理
-/gemini/*         https://generativelanguage.googleapis.com/:splat  200!
+# ==========================================
+# 1. 特定服务代理通道（优先匹配）
+# ==========================================
 
-# 2. Groq API 反向代理
-/groq/v1/*        https://api.groq.com/openai/v1/:splat              200!
+# 1.1 Hugging Face Inference API 代理
+# 支持原生 Inference 路径: https://你的域名/hf/models/Meta-Llama/Llama-3.3-70B-Instruct
+/hf/models/*       https://api-inference.huggingface.co/models/:splat 200!
+# 支持 OpenAI 兼容格式: https://你的域名/hf/v1
+/hf/v1/*           https://router.huggingface.co/v1/:splat            200!
+/hf/*              https://router.huggingface.co/v1/:splat            200!
 
-# 3. Cerebras API 反向代理
-/cerebras/v1/*    https://api.cerebras.ai/v1/:splat                  200!
+# 1.2 Gemini API 代理
+/gemini/*          https://generativelanguage.googleapis.com/:splat 200!
 
-# 4. Cohere API 兼容通道（同时兼容 /cohere 和 /cohere/v1）
-/cohere/v1/*      https://api.cohere.ai/compatibility/v1/:splat     200!
-/cohere/*         https://api.cohere.ai/compatibility/v1/:splat     200!
+# 1.3 Groq API 代理
+/groq/v1/*         https://api.groq.com/openai/v1/:splat            200!
+/groq/*            https://api.groq.com/openai/v1/:splat            200!
 
-# 5. Cline API 通道（支持 /cline/v1 和 /cline）
-/cline/v1/*       https://api.cline.bot/api/v1/:splat                200!
-/cline/*          https://api.cline.bot/api/v1/:splat                200!
+# 1.4 Cerebras API 代理
+/cerebras/v1/*     https://api.cerebras.ai/v1/:splat                 200!
+/cerebras/*        https://api.cerebras.ai/v1/:splat                 200!
 
-# 默认兜底兼容 (指向 Groq)
-/openai/v1/*      https://api.groq.com/openai/v1/:splat              200!
-/v1/*             https://api.groq.com/openai/v1/:splat              200!
+# 1.5 Cohere API 代理
+/cohere/v1/*       https://api.cohere.ai/compatibility/v1/:splat    200!
+/cohere/*          https://api.cohere.ai/compatibility/v1/:splat    200!
+
+# 1.6 Cline API 代理
+/cline/v1/*        https://api.cline.bot/api/v1/:splat               200!
+/cline/*           https://api.cline.bot/api/v1/:splat               200!
+
+# ==========================================
+# 2. 默认 OpenAI 兼容兜底（放在最底部）
+# ==========================================
+/openai/v1/*       https://api.groq.com/openai/v1/:splat            200!
+/v1/*              https://api.groq.com/openai/v1/:splat            200!
